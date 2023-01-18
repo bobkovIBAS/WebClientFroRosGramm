@@ -1,10 +1,31 @@
 <div class="container" *ngIf="currentUser; else loggedOut">
   <header class="jumbotron">
     <h3>
-      <strong>{{ currentUser.username }}</strong> Profile
+      <strong>{{ currentUser.firstname}} {{currentUser.lastname}}</strong>
     </h3>
+
+    <div class="avatar-container">
+      <div class="image-container" *ngIf="file; else placeholder"
+   [ngClass]="{'box-shadow-avatar': !!file}"
+  [ngStyle]="{backgroundImage: 'url(' + file + ')'}">
+      </div>
+  
+      <ng-template #placeholder>
+          <div class="image-container avatar-placeholder">
+          </div>
+      </ng-template>
+  
+      <label for="avatar-input-file">
+          <div class="icon-wrapper">
+              +++ <input type="file" id="avatar-input-file" accept="image/*" (change)="onFileChange($event)" />
+      
+          </div>
+      </label>
+  
+  </div>
   </header>
-  <p>
+
+  <!-- <p>
     <strong>Token:</strong>
     {{ currentUser.accessToken.substring(0, 20) }} ...
     {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
@@ -18,7 +39,7 @@
     <li *ngFor="let role of currentUser.roles">
       {{ role }}
     </li>
-  </ul>
+  </ul> -->
 </div>
 
 <ng-template #loggedOut>
