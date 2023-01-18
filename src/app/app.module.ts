@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,11 +31,10 @@ import { HomeUserComponent } from './home-user/home-user.component';
     HomeUserComponent
   ],
   imports: [
-    BrowserModule,
+    // BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    // FormsModule,
     HttpClientModule,
-    MatIconModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
