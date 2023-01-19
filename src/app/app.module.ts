@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-// import { BrowserModule } from '@angular/platform-browser';
-// import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { HomeUserComponent } from './home-user/home-user.component';
+
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 
@@ -31,10 +34,12 @@ import { HomeUserComponent } from './home-user/home-user.component';
     HomeUserComponent
   ],
   imports: [
-    // BrowserModule,
+    BrowserModule,
     AppRoutingModule,
-    // FormsModule,
+    FormsModule,
     HttpClientModule,
+    MatIconModule,
+    FileUploadModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -25,4 +25,11 @@ export class UserService {
   getAdminBoard(): Observable<any> {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
+  addPhotoOnAvatar(formData:FormData):Observable<any>{
+    console.log(formData.get("photo"))
+    return this.http.post("http://localhost:8080/avatar/new-avatar",formData);
+  }
+  uploadingAvatar(formData:FormData):Observable<any>{
+    return this.http.post("http://localhost:8080/avatar/upload-avatar",formData ,{ responseType: 'text' })
+  }
 }

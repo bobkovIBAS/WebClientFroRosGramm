@@ -29,4 +29,14 @@ export class AuthService {
       password
     }, httpOptions);
   }
+
+  addPhoto(files: FileList, email: string):Observable<any>{
+    const formData  = new FormData();
+    formData.append("photo",files[0]);
+
+    return this.http.post("http://localhost:8080/avatar/new-avatar", {
+      FormData,
+      email
+    }, httpOptions);
+  }
 }
