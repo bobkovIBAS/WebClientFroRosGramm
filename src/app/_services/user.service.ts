@@ -32,4 +32,10 @@ export class UserService {
   uploadingAvatar(formData:FormData):Observable<any>{
     return this.http.post("http://localhost:8080/avatar/upload-avatar",formData ,{ responseType: 'text' })
   }
+  uploadingPostInProfile(formData:FormData):Observable<any>{
+    return this.http.post("http://localhost:8080/post/upload-profilePost",formData ,{ responseType: 'text' })
+  }
+  creatingPostInProfile(formData:FormData):Observable<any>{
+    return this.http.post("http://localhost:8080/post/create-profilePost",formData ,{ responseType: 'text' })
+  }
 }

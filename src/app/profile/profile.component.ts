@@ -12,10 +12,11 @@ import { UserService } from "../_services/user.service";
 )
 
 
-
 export class ProfileComponent implements OnInit {
   currentUser: any;
-  file: string = '';
+  filePost: string = '';
+  file:any;
+
 
   constructor(private token: TokenStorageService,private userService: UserService) { }
 
@@ -28,6 +29,8 @@ export class ProfileComponent implements OnInit {
         this.file = "data:image/jpeg;base64,"+ data;
       }
     )
+  
+
   }
 
 
@@ -35,9 +38,7 @@ export class ProfileComponent implements OnInit {
     const files = event.target.files as FileList;
     if (files.length > 0) {
       const _file = URL.createObjectURL(files[0]);
-      console.log(files[0]);
       this.file = _file;
-      console.log(this.file);
       const formData  = new FormData();
       formData.append("photo",files[0]);
       formData.append("email",this.currentUser.email)
@@ -45,12 +46,26 @@ export class ProfileComponent implements OnInit {
     }
  }
 
-//  resetInput(){
-//   const input = document.getElementById('avatar-input-file') as HTMLInputElement;
-//   if(input){
-// input.value = "";
-// }
-// }
+ photoAddInPost(event:any){
+  
+  const files = event.target.files as FileList;
+  if (files.length > 0) {
+    const _file = URL.createObjectURL(files[0]);
+    this.filePost = _file;
+    // const formData  = new FormData();
+    // formData.append("photo",files[0]);
+    // formData.append("email",this.currentUser.email)
+    // this.userService.creatingPostInProfile(formData).subscribe();
+  }
+
+ }
+
+ resetInput(){
+  const input = document.getElementById('avatar-input-file') as HTMLInputElement;
+  if(input){
+input.value = "";
+}
+}
 
 
 
