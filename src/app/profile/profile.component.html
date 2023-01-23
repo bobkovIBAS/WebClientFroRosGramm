@@ -7,73 +7,73 @@
 
     <div class="avatar-container">
       <div class="image-container" *ngIf="file; else placeholder"
-          [ngClass]="{'box-shadow-avatar': !!file}"
-          [ngStyle]="{backgroundImage: 'url(' + file + ')'}">
+           [ngClass]="{'box-shadow-avatar': !!file}"
+           [ngStyle]="{backgroundImage: 'url(' + file + ')'}">
       </div>
-  
+
       <ng-template #placeholder>
-          <div class="image-container avatar-placeholder">
-          </div>
+        <div class="image-container avatar-placeholder">
+        </div>
       </ng-template>
-  
+
       <label for="avatar-input-file">
-          <div class="icon-wrapper">
-              <!-- <input type="file" id="avatar-input-file" accept="image/*" (change)="onFileChange($event)" /> -->
-              <mat-icon class="icon" fontIcon="edit" (click)="avatarInput.click()" ></mat-icon>
-              <input hidden #avatarInput type="file" id="avatarFile" (change)="onFileChange($event)">
-          </div>
-        </label>
-  </div>
-  <h4 style="padding-left: 50%;">Загрузить пост</h4>
-  <!-- <div>
-    <div class="post-container" *ngIf="filePost"
-    [ngClass]="{'box-shadow-avatar': !!filePost}"
-    [ngStyle]="{backgroundImage: 'url(' + filePost + ')'}">
+        <div class="icon-wrapper">
+          <!-- <input type="file" id="avatar-input-file" accept="image/*" (change)="onFileChange($event)" /> -->
+          <mat-icon class="icon" fontIcon="edit" (click)="avatarInput.click()"></mat-icon>
+          <input hidden #avatarInput type="file" id="avatarFile" (change)="onFileChange($event)">
+        </div>
+      </label>
+    </div>
+    <h4 style=" text-align: center">Загрузить пост</h4>
+    <div>
+      <div class="post-container" *ngIf="filePost"
+           [ngClass]="{'box-shadow-avatar': !!filePost}"
+           [ngStyle]="{backgroundImage: 'url(' + filePost + ')'}">
 
-    </div>
-    <label for="post-input-file" style="padding-left: 50%;">
-      <div  >
-        <mat-icon  class="icon" fontIcon="edit" (click)="avatarInput.click()" ></mat-icon>
-          <input hidden #avatarInput type="file" id="avatarFile" (change)="photoAddInPost($event)" />
       </div>
-    </label>
-  </div> -->
-  <div>
-    <div class="post-container" *ngIf="filePost"
-    [ngClass]="{'box-shadow-avatar': !!filePost}"
-    [ngStyle]="{backgroundImage: 'url(' + filePost + ')'}">
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile02" (change)="photoAddInPost($event)">
+          <label class="custom-file-label" for="inputGroupFile02">Выберите файл</label>
+        </div>
+      </div>
 
+      <input type="text" placeholder="Введите текст" id="text" (change)="textAddInPost($event)">
+      <button id="" (click)="uploadPost($event)"> Загрузить пост </button>
     </div>
-    <div class="input-group mb-3" >
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" id="inputGroupFile02" (change)="photoAddInPost($event)">
-        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
-      </div>
-      <div class="input-group-append">
-        <button class="input-group-text" id="" >Upload</button>
-      </div>
-    </div>
-  </div>
+
   </header>
+  <tbody>
+    <tr *ngFor="let post of saveLocal ; index as i">
+      <td>
+        <div class="post">
+          <table >
+            <tbody>
+              <tr>
+                <td class="photo">
+                  <img class="post-container photo" *ngIf="photoInPost[i]"
+                  [ngClass]="{'box-shadow-avatar': !!photoInPost[i]}"
+                  [ngStyle]="{backgroundImage: 'url(' + photoInPost[i] + ')'}">
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td >
+                  <div class="comment">
+                    {{post?.label}}
+                    <mat-icon class="icon like" fontIcon="favorite" (click)="likeButton.click()"></mat-icon>
+                    <button  #likeButton (click)="addLikeOnPost(i)" > </button>
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </td>
+    </tr>
 
-
-
-
-  <!-- <p>
-    <strong>Token:</strong>
-    {{ currentUser.accessToken.substring(0, 20) }} ...
-    {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
-  </p>
-  <p>
-    <strong>Email:</strong>
-    {{ currentUser.email }}
-  </p>
-  <strong>Roles:</strong>
-  <ul>
-    <li *ngFor="let role of currentUser.roles">
-      {{ role }}
-    </li>
-  </ul> -->
+  </tbody>
 </div>
 
 <ng-template #loggedOut>

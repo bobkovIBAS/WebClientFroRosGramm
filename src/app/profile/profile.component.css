@@ -73,3 +73,26 @@
     background-size: cover;
     box-shadow: 0 10px 20px 20px #19026d1a;
 }
+
+.post {
+    border: 1px solid #808080;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+.photo {
+    margin: 10px;
+    text-align: center;
+}
+
+.comment {
+  margin-left: 10px;
+  display: flex;
+}
+
+.like {
+  background: 0;
+  border: 0px;
+  margin-right: 10px;
+  margin-left: auto;
+}

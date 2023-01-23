@@ -1,5 +1,42 @@
 <div class="container">
-  <header class="jumbotron">
+  <header >
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <p>{{ content }}</p>
   </header>
+
+  <tbody>
+    <tr *ngFor="let post of saveLocal ; index as i">
+      <td>
+        <div class="post">
+          <table >
+            <tbody>
+              <tr>
+                {{post?.firstname}}
+              </tr>
+              <tr>
+                <td class="photo">
+                  
+                  <img class="post-container photo" *ngIf="photoInPost[i]"
+                  [ngClass]="{'box-shadow-avatar': !!photoInPost[i]}"
+                  [ngStyle]="{backgroundImage: 'url(' + photoInPost[i] + ')'}">
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td >
+                  <div class="comment">
+                    {{post?.label}}
+                    <mat-icon class="icon like" fontIcon="favorite"></mat-icon>
+                    
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </td>
+    </tr>
+
+  </tbody>
 </div>

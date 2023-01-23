@@ -1,5 +1,31 @@
 <div class="container">
   <header class="jumbotron">
-    <p>{{ content }}</p>
+    <input type="text" placeholder="Введите текст" id="text" (change)="searchSubscribers($event)" >
+    <button id="" (click)="sendName($event)"> Найти пользователя </button>
   </header>
+
+  <div>
+    <h1>Найденые пользователи</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Имя</th>
+          <th>Фамилия</th>
+          <th>Email</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of allUser ; index as i">
+          <td> {{  user?.firstname }} </td>
+          <td> {{  user?.lastname }}</td>
+          <td> {{  user?.email }}</td>
+          <td>
+            <button id = "{{i}}"type="button" (click)="sendDataUser(i)">Подписаться </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
 </div>
