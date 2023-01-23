@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { profilePost } from './profilePost';
 
 const API_URL = 'http://localhost:8080/api/';
 
@@ -25,17 +26,22 @@ export class UserService {
   getAdminBoard(): Observable<any> {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
-  addPhotoOnAvatar(formData:FormData):Observable<any>{
+  addPhotoOnAvatar(formData: FormData): Observable<any> {
     console.log(formData.get("photo"))
     return this.http.post("http://localhost:8080/avatar/new-avatar",formData);
   }
-  uploadingAvatar(formData:FormData):Observable<any>{
+  uploadingAvatar(formData: FormData): Observable<any> {
     return this.http.post("http://localhost:8080/avatar/upload-avatar",formData ,{ responseType: 'text' })
   }
-  uploadingPostInProfile(formData:FormData):Observable<any>{
-    return this.http.post("http://localhost:8080/post/upload-profilePost",formData ,{ responseType: 'text' })
+  uploadingPostInProfile(formData: FormData): Observable<profilePost[]> {
+    return this.http.post<profilePost[]>("http://localhost:8080/post/upload-profilePost",formData)
   }
-  creatingPostInProfile(formData:FormData):Observable<any>{
+  creatingPostInProfile(formData: FormData): Observable<any> {
     return this.http.post("http://localhost:8080/post/new-post",formData ,{ responseType: 'text' })
   }
+
+  searchingUsers(formData: FormData): Observable<any> {
+    return this.http.post("http://localhost:8080/subscriber/find-users",formData)
+  }
+
 }

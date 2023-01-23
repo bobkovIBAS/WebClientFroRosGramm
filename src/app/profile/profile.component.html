@@ -34,34 +34,46 @@
       <div class="input-group mb-3">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="inputGroupFile02" (change)="photoAddInPost($event)">
-          <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+          <label class="custom-file-label" for="inputGroupFile02">Выберите файл</label>
         </div>
       </div>
-      
-      <input type="text" placeholder="Input text" id="text" (change)="textAddInPost($event)">
-      <button id="" >Upload</button>
+
+      <input type="text" placeholder="Введите текст" id="text" (change)="textAddInPost($event)">
+      <button id="" (click)="uploadPost($event)"> Загрузить пост </button>
     </div>
 
   </header>
+  <tbody>
+    <tr *ngFor="let post of saveLocal ; index as i">
+      <td>
+        <div class="post">
+          <table >
+            <tbody>
+              <tr>
+                <td class="photo">
+                  <img class="post-container photo" *ngIf="photoInPost[i]"
+                  [ngClass]="{'box-shadow-avatar': !!photoInPost[i]}"
+                  [ngStyle]="{backgroundImage: 'url(' + photoInPost[i] + ')'}">
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td >
+                  <div class="comment">
+                    {{post?.label}}
+                    <mat-icon class="icon like" fontIcon="favorite"></mat-icon>
+                    
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </td>
+    </tr>
 
-
-
-
-  <!-- <p>
-    <strong>Token:</strong>
-    {{ currentUser.accessToken.substring(0, 20) }} ...
-    {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
-  </p>
-  <p>
-    <strong>Email:</strong>
-    {{ currentUser.email }}
-  </p>
-  <strong>Roles:</strong>
-  <ul>
-    <li *ngFor="let role of currentUser.roles">
-      {{ role }}
-    </li>
-  </ul> -->
+  </tbody>
 </div>
 
 <ng-template #loggedOut>
